@@ -65,21 +65,35 @@ for (let i = 1; i <= 100; i++){
   and change the program so that it works for any size, outputting a grid of the given width and height.
 */
 function makeGrid (number) {
-  let width = 0;
   let height = 0;
-  let output = '';
-  for (let i = 0; i < number; i++) {
-    if (i % 2 !== 0) {
-      output += ' ';
-      width++;
-    } else {
-      output += '#';
-      width++;
-    }
-  }
+  let row = '';
+  let isOddRow = false;
+
   while (height < number) {
-    console.log (output);
+    isOddRow = height % 2 !== 0;
+
+    for (let i = 0; i < number; i++) {
+      let isOddColumn = i % 2 !== 0;
+
+      if (isOddColumn) {
+        if (isOddRow) {
+          row += ' ';
+        } else {
+          row += '#';
+        }
+      } else {
+        if (isOddRow) {
+          row += '#';
+        } else {
+          row += ' ';
+        }
+      }
+    }
+
+    console.log (row);
+    row = '';
     height++;
   }
 }
-makeGrid (16);
+makeGrid (8);
+
